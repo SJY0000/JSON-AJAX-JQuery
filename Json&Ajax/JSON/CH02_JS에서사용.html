@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS에서 사용</title>
+    <link rel="shortcut icon" href="#" />
+  </head>
+  <body>
+    <h1>JS에서 사용</h1>
+    <div id="output"></div>
+    <script type="text/javascript">
+      const person = {
+        name: 'Joe',
+        'last Name': 'Miller',
+        car1: 'Mustang',
+        car2: 'F150',
+      };
+      let str1 = 'car';
+      let cnt = 1;
+
+      // 객체(object)의 갑에 접근 방법
+      // 1. person.car1
+      // 2. person["car1"]
+      console.log(person[str1 + cnt]);
+      cnt++;
+      console.log(person[str1 + cnt]);
+      // myobj객체 안에 friends 키 값에는 배열이 저장
+      const myObj = {
+        friends: [
+          {
+            firstName: '강',
+            lastName: '아지',
+          },
+          {
+            firstName: '고',
+            lastName: '양이',
+          },
+          {
+            firstName: '코',
+            lastName: '끼리',
+          },
+          {
+            firstName: '타',
+            lastName: '잔',
+          },
+        ],
+      };
+
+      const users = myObj.friends; // 배열
+      let html = ''; // 공백html
+      for (let x in users) {
+        // html에 성과 이름을 계속 더함
+        // number(x) x의 index번호 출력(0 부터)
+        html += Number(x) + 1 + ' . ' + users[x].firstName + ' ' + users[x].lastName + '<br>';
+        // html에는 문자열로 성,이름,br태그가 들어감
+      }
+      // innerHTML은 문자열에 태그도 포함해서 자식태그로 넣음
+      document.getElementById('output').innerHTML = html;
+    </script>
+  </body>
+</html>

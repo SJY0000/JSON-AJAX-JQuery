@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON Web에서 사용</title>
+    <link rel="shortcut icon" href="#" />
+  </head>
+  <body>
+    <h1>JSON Web에서 사용</h1>
+    <div id="output"></div>
+    <script>
+      // https://randomuser.me/api/
+      const data =
+        '{"results":[{"gender":"male","name":{"title":"Mr","first":"Konsta","last":"Paavola"},"location":{"street":{"number":5000,"name":"Itsenäisyydenkatu"},"city":"Pudasjärvi","state":"Satakunta","country":"Finland","postcode":61280,"coordinates":{"latitude":"-8.8931","longitude":"-144.1913"},"timezone":{"offset":"+4:30","description":"Kabul"}},"email":"konsta.paavola@example.com","login":{"uuid":"7aa74aa9-bdb8-4f9f-9e06-58e91fd0e8ce","username":"angrygoose411","password":"trapper","salt":"R1SF8M0M","md5":"8dd03ed533bebd4b4d6b92f47aefdb0d","sha1":"2b0d18f900b727a06bb4dc96dc2553f1a4f8b61b","sha256":"b0c99838885dd9f9b5c3a5c83b0b04e339b4ce21836bce3cce109a685c37433d"},"dob":{"date":"1973-11-14T04:57:35.690Z","age":49},"registered":{"date":"2018-03-29T11:40:43.778Z","age":4},"phone":"02-980-857","cell":"049-433-13-08","id":{"name":"HETU","value":"NaNNA781undefined"},"picture":{"large":"https://randomuser.me/api/portraits/men/57.jpg","medium":"https://randomuser.me/api/portraits/med/men/57.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/57.jpg"},"nat":"FI"}],"info":{"seed":"1992f936271497f0","results":1,"page":1,"version":"1.3"}}';
+      // JSON 데이터를 변환
+      const dataJSON = JSON.parse(data);
+      const person = dataJSON.results[0];
+      const output = document.getElementById('output');
+
+      let html = person.name.first + ' ' + person.name.last;
+      html += '<img src="' + person.picture.thumbnail + '">';
+      output.innerHTML = html;
+
+      // 가공한 데이터를 다시 전달 할 때 => JSON으로 변환
+      const strJSON = JSON.stringify(dataJSON);
+      console.log(strJSON);
+    </script>
+  </body>
+</html>

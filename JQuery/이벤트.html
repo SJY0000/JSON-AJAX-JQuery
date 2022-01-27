@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>jQuery - 이벤트</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <style>
+      body {
+        font-size: 17px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f4f4;
+        line-height: 1.5em;
+      }
+      header {
+        background: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 4px solid black;
+        margin-bottom: 10px;
+      }
+      #container {
+        width: 90%;
+        margin: auto;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>jQuery 이벤트</h1>
+    </header>
+    <div id="container">
+      <h3>마우스 이벤트</h3>
+      <button id="btn1">버튼 1</button>
+      <button id="btn2">버튼 2</button>
+      <button id="btn3">버튼 3</button>
+      <p class="para1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut earum quidem quae saepe. Nostrum sit minus sunt
+        deleniti autem, cum nemo. Quas earum porro dolor assumenda nostrum sed nam esse!
+      </p>
+      <h1 id="coords"></h1>
+      <hr />
+      <form action="">
+        <label for="name">Name</label><br />
+        <input type="text" id="name" name="name" />
+        <br />
+        <label for="email">Email</label><br />
+        <input type="email" id="email" name="email" />
+        <br />
+        <label for="gender">Gender</label><br />
+        <select name="gender" id="gender">
+          <option value="maie">Male</option>
+          <option value="femaie">Female</option>
+        </select>
+        <br />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+    <script>
+      $(document).ready(function () {
+        // html이 준비된 다음 실행
+        $('#btn1').on('dblclick', function () {
+          $('.para1').hide();
+        });
+        $('#btn2').hover(function () {
+          $('.para1').show();
+        });
+        $('#btn3').click(function () {
+          $('.para1').toggle();
+        });
+      });
+
+      // $(document).on('mousemove', function (e) {
+      //   // console.log(e.clientX, e.clientY);
+      //   $('#coords').text('x좌표 : ' + e.clientX + ' y좌표 : ' + e.clientY);
+      // });
+
+      $('input').focus(function () {
+        // input창을 클릭해서 커서가 나올 때
+        $(this).css('background-color', 'pink');
+        // this는 이벤트가 발생한 객체
+      });
+      $('input').blur(function () {
+        // input창에서 커서를 이동했을 때
+        $(this).css('background-color', 'white');
+      });
+      $('select').change(function (e) {
+        alert('변경됨');
+        alert(e.target.value);
+      });
+    </script>
+  </body>
+</html>

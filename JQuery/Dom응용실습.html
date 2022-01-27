@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>jQuery - DOM응용실습</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <style>
+      body {
+        font-size: 17px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f4f4;
+        line-height: 1.5em;
+      }
+      header {
+        background: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 4px solid black;
+        margin-bottom: 10px;
+      }
+      #container {
+        width: 90%;
+        margin: auto;
+        padding: 10px;
+      }
+      .myclass {
+        color: skyblue;
+        background-color: gray;
+        font-size: 2em;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-weight: 900;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>jQuery DOM응용실습</h1>
+    </header>
+    <div id="container">
+      <button id="btn1">버튼 1</button>
+      <p class="para1">첫번째 문장입니다.</p>
+      <p class="para2">두번째 문장입니다.</p>
+      <div id="myDiv"></div>
+      <ul>
+        <li>리스트 아이템 1</li>
+        <li>리스트 아이템 2</li>
+        <li>리스트 아이템 3</li>
+        <li>리스트 아이템 4</li>
+      </ul>
+    </div>
+    <script>
+      // $('p.para1').css('color', 'red');
+      // $('p.para1').css('background-color', 'yellow');
+      // 객체 형식으로 여러개의 css를 넣을 수 있음
+      // 하지만 css속성이 많을 경우 class를 추천
+      $('p.para1').css({ color: 'red', backgroundColor: 'yellow' });
+      $('p.para2').addClass('myclass');
+      // toggleClass
+      $('#btn1').on('click', function () {
+        $('p.para2').toggleClass('myclass');
+      });
+      // text 내용 vs html + text 수정
+      // $('#myDiv').text('문자열 내용 입력');
+      $('#myDiv').html('<h1>첫번째</h1><h2>두번째</h2><h3>세번째</h3>');
+      // 태그를 추가하는 방법 append, prepend
+      // append 마지막 위치에 추가
+      // prepend 처음 위치에 추가
+      $('ul').append('<li>append 추가</li>');
+      $('ul').prepend('<li>prepend 추가</li>');
+
+      // 배열 처리 반복문
+      const 과일 = ['사과', '당근', '배', '수박'];
+      $.each(과일, function (i, val) {
+        $('ul').append('<li>' + val + '</li>');
+      });
+      과일.forEach(function (val) {
+        $('ul').append('<li>' + val + '</li>');
+      });
+      // JQuery로 가능한것은 JS로 다 가능
+      // JQuery와 JS 동시에 사용가능
+    </script>
+  </body>
+</html>
