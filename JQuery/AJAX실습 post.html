@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>jQuery - AJAX Post</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <style>
+      body {
+        font-size: 17px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f4f4;
+        line-height: 1.5em;
+      }
+      header {
+        background: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 4px solid black;
+        margin-bottom: 10px;
+      }
+      #container {
+        width: 90%;
+        margin: auto;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>jQuery AJAX Post</h1>
+    </header>
+    <div id="container">
+      <h3>Post 추가</h3>
+      <form id="postForm" action="https://jsonplaceholder.typicode.com/posts" method="post">
+        <input type="text" id="title" placeholder="제목" /> <br />
+        <textarea id="body" cols="30" rows="10" placeholder="내용"></textarea> <br />
+        <input type="submit" value="전송" />
+      </form>
+    </div>
+    <script>
+      $('#postForm').submit(function (e) {
+        // 전송버튼을 눌렀을 때 이벤트(submit)
+        e.preventDefault(); // 이벤트시 서버로 보내는 요청을 중지
+        // console.log('서버주소로 요청');
+        let title = $('#title').val(); // title 창의 내용
+        let body = $('#body').val(); // body 창의 내용
+        // let url = "https://jsonplaceholder.typicode.com/posts"
+        let url = $(this).attr('action'); // form 의 action 속성의 값(주소)
+        $.post(url, { title: title, body: body }).done(function (data) {
+          console.log('포스트 저장됨');
+          console.log(data);
+        });
+      });
+      $.ajax({
+        method: 'GET',
+        url: 'https://jsonplaceholder.typicode.com/posts',
+        dataType: 'json',
+      }).done(function (data) {
+        // 요청 성공 시 결과 data
+        $.each(data, function (i, item) {
+          $('#results').append(`<h3>${item.title}</h3><p>${item.body}</p>`); // 변수를 사용하기위해 백틱사용
+        });
+      });
+    </script>
+  </body>
+</html>
