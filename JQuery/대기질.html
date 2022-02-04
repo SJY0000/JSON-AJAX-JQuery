@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>jQuery - AJAX lotto</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <style>
+      body {
+        font-size: 17px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f4f4;
+        line-height: 1.5em;
+      }
+      header {
+        background: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 4px solid black;
+        margin-bottom: 10px;
+      }
+      #container {
+        width: 90%;
+        margin: auto;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>jQuery AJAX lotto</h1>
+    </header>
+    <div id="container">
+      <div id="results"></div>
+    </div>
+    <script>
+      var url = 'http://apis.data.go.kr/6260000/AirQualityInfoService/getAirQualityInfoClassifiedByStation'; /*URL*/
+      var queryParams =
+        '?' +
+        encodeURIComponent('serviceKey') +
+        '=' +
+        'qeUH5AUzVmbZUOEc6jQ8dsntUz9ZyN6kBXSpfGZ1YtPAFuLygs3fRKjlVjq%2FieMXGOHXezN4iP0l9V3WFAPh8w%3D%3D'; /*Service Key*/
+      queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+      queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
+      queryParams += '&' + encodeURIComponent('resultType') + '=' + encodeURIComponent('json'); /**/
+      $.ajax({
+        method: 'get',
+        url: url + queryParams,
+        contentType: 'application/x-www-form-urlencoded',
+        dataType: 'json',
+      }).done(function (response) {
+        // 요청 성공 시 결과 data
+        console.log(response.getAirQualityInfoClassifiedByStation.item);
+        const data = response.getAirQualityInfoClassifiedByStation.item; // 배열 데이터만 입력
+        $.each(data, function (i, item) {
+          $('#results').append(`<p>${item.controlnumber}</p>${item.site} ${item.pm10}`); // 변수를 사용하기위해 백틱사용
+        });
+      });
+    </script>
+  </body>
+</html>
