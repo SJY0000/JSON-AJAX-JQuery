@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <title>jQuery - AJAX lotto</title>
+    <title>jQuery - AJAX</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <style>
       body {
@@ -28,7 +28,7 @@
   </head>
   <body>
     <header>
-      <h1>jQuery AJAX lotto</h1>
+      <h1>jQuery AJAX</h1>
     </header>
     <div id="container">
       <div id="results"></div>
@@ -55,6 +55,7 @@
         console.log(response.data);
         const data = response.data; // 배열 데이터만 입력
         $.each(data, function (i, item) {
+          // 2022년 이후 데이터만 선택
           if (item.wrt_dt > '2022-00-00') {
             $('#results').append(`<p>${item.wrt_dt}</p>${item.title}${item.html_origin_cn}`); // 변수를 사용하기위해 백틱사용
           }
